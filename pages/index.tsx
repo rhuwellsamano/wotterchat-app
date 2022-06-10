@@ -1,10 +1,17 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { Toaster } from "react-hot-toast";
 import Feed from "../components/Feed";
 import Sidebar from "../components/Sidebar";
 import Widgets from "../components/Widgets";
+import { Splash } from "../typings";
+import { fetchSplashes } from "../utils/fetchSplashes";
 
-const Home: NextPage = () => {
+interface Props {
+  splashes: Splash[];
+}
+
+const Home = ({ splashes }: Props) => {
   return (
     // <div
     //   style={{
@@ -22,10 +29,11 @@ const Home: NextPage = () => {
         <title>WotterChat App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Toaster />
 
       <main className="grid grid-cols-9">
         <Sidebar />
-        <Feed />
+        <Feed splashes={splashes} />
         <Widgets />
       </main>
     </div>
@@ -34,3 +42,13 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const splashes = await fetchSplashes();
+
+  return {
+    props: {
+      splashes,
+    },
+  };
+};

@@ -7,7 +7,7 @@ import {
   SearchCircleIcon,
 } from "@heroicons/react/outline";
 
-function TweetBox() {
+function SplashBox() {
   const [input, setInput] = useState<string>("");
 
   return (
@@ -39,7 +39,7 @@ function TweetBox() {
               disabled={!input}
               className="bg-wotterblue px-5 py-2 font-bold rounded-full text-white disabled:opacity-40"
             >
-              Tweet
+              Splash
             </button>
           </div>
         </form>
@@ -48,4 +48,4 @@ function TweetBox() {
   );
 }
 
-export default TweetBox;
+export default SplashBox;

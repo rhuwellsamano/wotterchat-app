@@ -11,14 +11,12 @@ import {
 } from "@heroicons/react/outline";
 import SidebarRow from "./SidebarRow";
 
+// https://links.papareact.com/drq
+
 function Sidebar() {
   return (
     <div className="flex flex-col col-span-2 items-center px-4 md:items-start">
-      <img
-        className="h-10 w-10 m-3"
-        src="https://links.papareact.com/drq"
-        alt=""
-      />
+      <img className="h-12 w-12 m-3" src="/waterlogo.png" alt="" />
       <SidebarRow Icon={HomeIcon} title="Home" />
       <SidebarRow Icon={HashtagIcon} title="Explore" />
       <SidebarRow Icon={BellIcon} title="Notifications" />
