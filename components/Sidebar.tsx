@@ -10,10 +10,12 @@ import {
   HomeIcon,
 } from "@heroicons/react/outline";
 import SidebarRow from "./SidebarRow";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 // https://links.papareact.com/drq
 
 function Sidebar() {
+  const { data: session } = useSession();
   return (
     <div className="flex flex-col col-span-2 items-center px-4 md:items-start">
       <img className="h-12 w-12 m-3" src="/waterlogo.png" alt="" />
@@ -23,7 +25,11 @@ function Sidebar() {
       <SidebarRow Icon={MailIcon} title="Messages" />
       <SidebarRow Icon={BookmarkIcon} title="Bookmark" />
       <SidebarRow Icon={CollectionIcon} title="Lists" />
-      <SidebarRow Icon={UserIcon} title="Sign In" />
+      <SidebarRow
+        onClick={session ? signOut : signIn}
+        Icon={UserIcon}
+        title={session ? "Sign Out" : "Sign In"}
+      />
       <SidebarRow Icon={DotsCircleHorizontalIcon} title="More" />
     </div>
   );

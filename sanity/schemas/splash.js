@@ -18,7 +18,6 @@ export default {
       name: "username",
       title: "Username",
       type: "string",
-      to: { type: "author" },
     },
     {
       name: "profileImg",
@@ -27,13 +26,8 @@ export default {
     },
     {
       name: "image",
-      title: "Images",
+      title: "Splash Image",
       type: "string",
-    },
-    {
-      name: "publishedAt",
-      title: "Published at",
-      type: "datetime",
     },
   ],
 };

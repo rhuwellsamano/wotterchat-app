@@ -33,7 +33,7 @@ function Feed({ splashes: splashesProp }: Props) {
         />
       </div>
       <div>
-        <SplashBox />
+        <SplashBox setSplashes={setSplashes} />
       </div>
       {/* FEED */}
       <div>

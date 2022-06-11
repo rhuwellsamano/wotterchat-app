@@ -25,7 +25,6 @@ function Splash({ splash }: Props) {
     refreshComments();
   }, []);
 
-  console.log("COMMENTS: ", comments);
   return (
     <div className="flex flex-col space-x-3 border-y p-5 border-gray-200">
       <div className="flex space-x-3">
