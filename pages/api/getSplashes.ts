@@ -8,7 +8,7 @@ const feedQuery = groq`
     *[_type == "splash"] {
         _id,
         ...
-    } | order(createdAt asc)
+    } | order(createdAt desc)
 `;
 
 type Data = {

@@ -18,7 +18,7 @@ import { fetchSplashes } from "../utils/fetchSplashes";
 import toast from "react-hot-toast";
 
 interface Props {
-  setSplashes: React.Dispatch<React.SetStateAction<Splash[]>>;
+  setSplashes: any;
 }
 
 function SplashBox({ setSplashes }: Props) {
@@ -30,9 +30,7 @@ function SplashBox({ setSplashes }: Props) {
   const { data: session } = useSession();
   const [imageUrlBoxIsOpen, setImageUrlBoxIsOpen] = useState<boolean>(false);
 
-  const addImageToSplash = (
-    e: React.MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
-  ) => {
+  const addImageToSplash = (e: any) => {
     e.preventDefault();
 
     if (!imageInputRef.current?.value) return;
@@ -43,6 +41,7 @@ function SplashBox({ setSplashes }: Props) {
   };
 
   const postSplash = async () => {
+    console.log("postSplash in SplashBox fired");
     const splashInfo: SplashBody = {
       text: input,
       username: session?.user?.name || "Unknown User",
@@ -50,12 +49,17 @@ function SplashBox({ setSplashes }: Props) {
       image: image,
     };
 
+    console.log("splashInfo: ", splashInfo);
+
     const result = await fetch(`/api/addSplash`, {
       body: JSON.stringify(splashInfo),
       method: "POST",
     });
 
+    console.log("what's the result?", result);
+
     const json = await result.json();
+    console.log("what's the JSON result?", json);
 
     const newSplashes = await fetchSplashes();
     setSplashes(newSplashes);
@@ -65,9 +69,8 @@ function SplashBox({ setSplashes }: Props) {
     return json;
   };
 
-  const handleSubmit = (
-    e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
-  ) => {
+  const handleSubmit = (e: any) => {
+    console.log("handleSubmit fired");
     e.preventDefault();
     postSplash();
     setInput("");
@@ -104,7 +107,7 @@ function SplashBox({ setSplashes }: Props) {
             </div>
 
             <button
-              onClick={() => handleSubmit}
+              onClick={handleSubmit}
               disabled={!input || !session}
               className="bg-wotterblue px-5 py-2 font-bold rounded-full text-white disabled:opacity-40"
             >
@@ -122,7 +125,7 @@ function SplashBox({ setSplashes }: Props) {
               />
               <button
                 type="submit"
-                onClick={() => addImageToSplash}
+                onClick={addImageToSplash}
                 className="font-bold text-white"
               >
                 Add Image
